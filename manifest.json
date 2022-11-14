@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "呱呱助手",
+  "description": "呱呱数据一键下载",
+  "version": "1.0.0",
+  "author": "qiuxchao",
+  "action": {
+     "default_title": "Click to view a popup",
+   	 "default_popup": "popup.html"
+   },
+    
+  "default_locale": "zh-CN",
+  "icons": {
+    "128": "images/logo.png"
+  },
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+     {
+       "matches": ["https://*.nytimes.com/*"],
+       "css": ["my-styles.css"],
+       "js": ["content-script.js"]
+     }
+   ],
+  "host_permissions": ["http://*/*", "https://*/*"],
+  "permissions": ["tabs"]
+
+}
