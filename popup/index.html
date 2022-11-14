@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>呱呱助手</title>
+  <link rel="stylesheet" href="./index.css">
+</head>
+<body>
+  <div id="app">
+    <div class="wrap">
+      <input type="checkbox" v-model="on" :value="on" class="checkbox" />
+      <span class="text">{{on ? '开启' : '关闭'}}</span>
+    </div>
+  </div>
+  <script type="importmap">
+    {
+      "imports": {
+        "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+      }
+    }
+  </script>
+  <script type="module" src="./index.js"></script>
+</body>
+</html>
