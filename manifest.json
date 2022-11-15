@@ -11,7 +11,7 @@
     
   "default_locale": "zh_CN",
   "icons": {
-    "128": "static/logo.png"
+    "48": "static/logo.png"
   },
   "background": {
     "service_worker": "background.js",
