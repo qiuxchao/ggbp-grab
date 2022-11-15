@@ -2,27 +2,16 @@
 function handleDownload(res) {
   console.log('下载图片');
   const title = $('#__next > section > main > div > div.my-15.flex.rounded-8.bg-white.p-24 > div.flex-1 > div.text-20.line-clamp-1')?.text() || '无标题';
-  const imgList = $('#__next > section > main > div > div.mt-15.overflow-hidden.rounded-8.bg-white > div.p-24 > div.mb-30 > img').each(function () { 
+  const imgList = $('#__next > section > main > div > div.mt-15.overflow-hidden.rounded-8.bg-white > div.p-24 > div.mb-30 > img').each(function (index) { 
     const url = $(this).attr('src')
-    chrome.permissions.request({
-      permissions: ['downloads']
-    }, (granted) => {
-      console.log(chrome);
-      debugger
-      // The callback argument will be true if the user granted the permissions.
-      if (granted) {
-        doSomething();
-      } else {
-        doSomethingElse();
-      }
+    // 内容脚本无法请求权限，需要把数据发送给 service_worker 处理
+    url && chrome.runtime.sendMessage({ type: "download", payload: {
+      url,
+      title,
+      index: index + 1
+    } }, function (response) {
+      console.log(response);
     });
-    // url && chrome.downloads.download({
-    //   url,
-    //   filename: `呱呱爆品素材/${title}/`,
-    //   method: 'GET',
-    // }, (downloadId) => {
-    //   console.log('[ downloadId ] >', downloadId)
-    // })
   })
 }
 
