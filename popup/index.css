@@ -6,7 +6,7 @@
 body {
   width: 200px;
   height: 100px;
-  background: url(../images/btn_bg.png) no-repeat 100%/100%;
+  background: url(../static/btn_bg.png) no-repeat 100%/100%;
   display: flex;
   justify-content: center;
   align-items: center;

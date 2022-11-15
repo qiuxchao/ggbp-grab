@@ -1,22 +1,22 @@
-import { createApp, ref, watch } from 'vue'
+// 设置开关状态
+const setCheckbox = (on) => {
+  $('input.checkbox').attr('checked', on)
+  $('span.text').text(on ? '开启' : '关闭')
+}
 
-  createApp({
-    setup() {
-      const on = ref(true);
-      watch(on, (newOn) => {
-        chrome.storage.sync.set({ on: newOn });
-      })
+$(document).ready(function () {
+  let on = false;
 
-      return {
-        on
-      }
-    },
-    
-
-    mounted() {
-      chrome.storage.sync.get(['on'], result => {
-        this.on = result.on || false;
-      });
-    }
-
-  }).mount('#app')
+  // 初始化开关
+  chrome.storage.sync.get(['on'], result => {
+    on = result.on || false;
+    setCheckbox(on)
+    $('input.checkbox').change(function (e) { 
+      on = e.target.checked;
+      setCheckbox(e.target.checked);
+      chrome.storage.sync.set({ on });
+    })
+  });
+  
+  
+})

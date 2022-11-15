@@ -9,9 +9,9 @@
    	 "default_popup": "popup/index.html"
    },
     
-  "default_locale": "zh-CN",
+  "default_locale": "zh_CN",
   "icons": {
-    "128": "images/logo.png"
+    "128": "static/logo.png"
   },
   "background": {
     "service_worker": "background.js",
@@ -21,15 +21,18 @@
      {
        "matches": ["http://bp.guaguayoupin.com/detail/*"],
        "css": ["content/index.css"],
-       "js": ["https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js", "content/index.js"]
+       "js": ["static/jquery-3.3.1.min.js", "content/index.js"]
      }
    ],
-  "permissions": ["storage", "downloads"],
+  "permissions": ["storage"],
+  "optional_permissions": ["downloads"],
   "web_accessible_resources": [
     {
       "resources": [
-        "images/btn_bg.png",
-        "images/logo.png",
+        "static/btn_bg.png",
+        "static/logo.png",
+        "static/jquery-3.3.1.min.js",
+        "static/vue.esm-browser.js",
         "content/index.css",
         "content/index.js",
         "popup/index.js",
