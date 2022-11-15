@@ -5,8 +5,8 @@
   "version": "1.0.0",
   "author": "qiuxchao",
   "action": {
-     "default_title": "Click to view a popup",
-   	 "default_popup": "popup.html"
+     "default_title": "呱呱助手",
+   	 "default_popup": "popup/index.html"
    },
     
   "default_locale": "zh-CN",
@@ -19,12 +19,25 @@
   },
   "content_scripts": [
      {
-       "matches": ["https://*.nytimes.com/*"],
-       "css": ["my-styles.css"],
-       "js": ["content-script.js"]
+       "matches": ["http://bp.guaguayoupin.com/detail/*"],
+       "css": ["content/index.css"],
+       "js": ["https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.js", "content/index.js"]
      }
    ],
-  "host_permissions": ["http://*/*", "https://*/*"],
-  "permissions": ["tabs"]
-
+  "permissions": ["storage", "downloads"],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "images/btn_bg.png",
+        "images/logo.png",
+        "content/index.css",
+        "content/index.js",
+        "popup/index.js",
+        "popup/index.html",
+        "popup/index.css",
+        "background.js"
+      ],
+      "matches": [ "http://*/*", "https://*/*" ]
+    }
+  ]
 }
