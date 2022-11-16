@@ -24,6 +24,7 @@
        "js": ["static/jquery-3.3.1.min.js", "content/index.js"]
      }
    ],
+  "devtools_page": "devtools/index.html",
   "permissions": ["storage"],
   "optional_permissions": ["downloads"],
   "web_accessible_resources": [

@@ -1,6 +1,5 @@
 
-
-// 监听内容脚本的下载事件
+// 监听事件
 chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     console.log('[ request, sender ] >', request, sender)
@@ -8,6 +7,7 @@ chrome.runtime.onMessage.addListener(
       "from a content script:" + sender.tab.url :
       "from the extension");
     const { type, payload } = request;
+    // 内容脚本的下载事件
     if (type === "download")
       sendResponse({ receive: payload });
       // 请求下载权限
@@ -28,3 +28,7 @@ chrome.runtime.onMessage.addListener(
       });
   }
 );
+
+chrome.runtime.sendMessage({
+  type: "devtools",
+});
