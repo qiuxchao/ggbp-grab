@@ -17,7 +17,13 @@ const handleData = (tempRequest) => {
 };
 
 chrome.devtools.network.onRequestFinished.addListener(function (request) {
-  handleData(request);
+  console.log('[ request ] >', request)
+  chrome.runtime.sendMessage({
+    type: "network",
+    request,
+  });
+  // handleData(request);
+  allData = request
 });
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
