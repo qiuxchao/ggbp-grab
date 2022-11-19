@@ -4,7 +4,7 @@
   right: 100px;
 }
 
-button#gg-download-btn {
+.gg-helper-btn-wrap button.gg-helper-btn {
   border: none;
   outline: none;
   width: 100px;
@@ -16,6 +16,6 @@ button#gg-download-btn {
   box-shadow: 0 2px 6px 0px rgba(143, 13, 194, 0.3);
   font-weight: 600;
 }
-button#gg-download-btn:active {
+.gg-helper-btn-wrap button.gg-helper-btn:active {
   filter: brightness(.9)
 }

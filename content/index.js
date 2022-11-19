@@ -26,7 +26,7 @@ function handleDownload(res) {
 const addDownloadBtn = () => {
   $('body').append(`
       <div class="gg-helper-btn-wrap">
-        <button id="gg-download-btn">下载图片</button>
+        <button id="gg-download-btn" class="gg-helper-btn">下载图片</button>
       </div>
     `)
 
@@ -38,20 +38,33 @@ function handleFetchData() {
 
 }
 
+// 添加发送数据按钮
+const addSendBtn = () => {
+  $('body').append(`
+      <div class="gg-helper-btn-wrap">
+        <button id="gg-send-btn" class="gg-helper-btn">发送数据</button>
+      </div>
+    `)
+
+  $('#gg-send-btn').click(handleFetchData)
+}
+
 $(document).ready(function () {
   const isDetail = /detail/.test(document.location.href);
 
-  if () {
+  if (isDetail) {
     // 初始化获取开关状态
     chrome.storage.sync.get(['on'], result => {
-      // console.log('[ result ] >', result)
-      result.on && addDownloadBtn();
+      console.log('[ result ] >', result)
+      if (result.on) {
+        isDetail ? addDownloadBtn() : addSendBtn();
+      }
     });
 
     // 监听storage变化
     chrome.storage.onChanged.addListener((changes, area) => {
-      // console.log('storage变化：', changes, area);
-      const btnEl = $('#gg-download-btn')
+      console.log('storage变化：', changes, area);
+      const btnEl = $(isDetail ? '#gg-download-btn' : '#gg-send-btn');
       if (changes.on.newValue && !btnEl.length) {
         addDownloadBtn();
       } else {
