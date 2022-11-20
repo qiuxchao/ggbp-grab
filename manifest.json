@@ -19,7 +19,7 @@
   },
   "content_scripts": [
      {
-       "matches": ["http://bp.guaguayoupin.com/detail/*", "http://bp.guaguayoupin.com/"],
+       "matches": ["http://bp.guaguayoupin.com/*"],
        "css": ["content/index.css"],
        "js": ["static/jquery-3.3.1.min.js", "content/index.js"]
      }
