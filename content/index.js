@@ -35,7 +35,11 @@ const addDownloadBtn = () => {
 
 // 发送请求
 function handleFetchData() {
-
+  chrome.runtime.sendMessage({
+    type: "devtools"
+  }, function (response) {
+    console.log(response);
+  });
 }
 
 // 添加发送数据按钮

@@ -4,8 +4,8 @@ chrome.runtime.onMessage.addListener(
   function (request, sender, sendResponse) {
     console.log('[ request, sender ] >', request, sender)
     console.log(sender.tab ?
-      "from a content script:" + sender.tab.url :
-      "from the extension");
+      "来自内容脚本: " + sender.tab.url :
+      "来自扩展程序");
     const { type, payload } = request;
     // 内容脚本的下载事件
     if (type === "download")

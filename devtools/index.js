@@ -35,5 +35,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       type: "network",
       data: allData,
     });
+    sendResponse({data: allData});
   }
 });
