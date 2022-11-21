@@ -43,5 +43,8 @@
       ],
       "matches": [ "<all_urls>" ]
     }
+  ],
+  "host_permissions": [
+    "http://localhost:3372/*"
   ]
 }

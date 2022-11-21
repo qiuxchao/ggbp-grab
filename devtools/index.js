@@ -1,40 +1,28 @@
-const allData = {};
 
-const handleData = (tempRequest) => {
-  const { _resourceType, response, request } = tempRequest;
-  const { url = '' } = request;
-  const { content } = response;
-  const [type, mineType] = content.mimeType.split("/"); // image/gif
-  const tempVal = {
-    type,
-    url,
-    mineType,
-    tempRequest,
-  };
-  allData[_resourceType]
-    ? allData[_resourceType].push(tempVal)
-    : (allData[_resourceType] = [tempVal]);
-};
+let listData = '';
 
-chrome.devtools.network.onRequestFinished.addListener(function (request) {
-  console.log('[ request ] >', request)
-  chrome.runtime.sendMessage({
-    type: "network",
-    request,
-  });
-  // handleData(request);
-  allData = request
+chrome.devtools.network.onRequestFinished.addListener((request) => {
+  request.getContent((content) => {
+    if (request.request.url === 'https://api.guaguayoupin.com/ggyp/ranking/item') {
+      listData = content;
+    }
+  })
 });
 
+
+
+
+// 监听事件
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  chrome.devtools.inspectedWindow.eval(
-    `console.log(${JSON.stringify(allData)})`
-  );
-  if (request.type === "devtools") {
-    chrome.runtime.sendMessage({
-      type: "network",
-      data: allData,
-    });
-    sendResponse({data: allData});
+    const { type } = request;
+    // 内容脚本的发送数据按钮点击
+    if (type === 'send-data') {
+      sendResponse({ haveData: !!listData });
+      // 使用 chrome.runtime.id 判断扩展上下文是否有效
+      chrome.runtime?.id && chrome.runtime.sendMessage({
+        type: "devtools-send-data",
+        payload: listData,
+      });
+    }
   }
-});
+);
