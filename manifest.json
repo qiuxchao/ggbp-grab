@@ -27,23 +27,6 @@
   "devtools_page": "devtools/index.html",
   "permissions": ["storage", "idle"],
   "optional_permissions": ["downloads"],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "static/btn_bg.png",
-        "static/logo.png",
-        "static/jquery-3.3.1.min.js",
-        "static/vue.esm-browser.js",
-        "content/index.css",
-        "content/index.js",
-        "popup/index.js",
-        "popup/index.html",
-        "popup/index.css",
-        "background.js"
-      ],
-      "matches": [ "<all_urls>" ]
-    }
-  ],
   "host_permissions": [
     "http://localhost:3372/*"
   ]

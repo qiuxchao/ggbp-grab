@@ -11,13 +11,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }, (granted) => {
       if (granted) {
         // 授权成功
-        const [extName] = payload.url.match(/\.(png|jpg|gif|jpeg|webp)$/)
-        chrome.downloads.download({
-          url: payload.url,
-          filename: `呱呱爆品素材/${payload.title}/${payload.index}${extName}`,
-          conflictAction: 'overwrite',  // 覆盖相同文件
-        }, (downloadId) => {
-          console.log('[ downloadId ] >', downloadId)
+        payload.forEach(item => {
+          const [extName] = item.url.match(/\.(png|jpg|gif|jpeg|webp)$/)
+          chrome.downloads.download({
+            url: item.url,
+            filename: `呱呱爆品素材/${item.title}/${item.index}${extName}`,
+            conflictAction: 'overwrite',  // 覆盖相同文件
+          }, (downloadId) => {
+            console.log('[ downloadId ] >', downloadId)
+          })
         })
       }
     });
