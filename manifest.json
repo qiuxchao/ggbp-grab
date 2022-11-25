@@ -25,7 +25,7 @@
      }
    ],
   "devtools_page": "devtools/index.html",
-  "permissions": ["storage", "idle"],
+  "permissions": ["storage"],
   "optional_permissions": ["downloads"],
   "host_permissions": [
     "http://localhost:3372/*"

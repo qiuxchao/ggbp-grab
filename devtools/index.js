@@ -3,7 +3,7 @@ let listData = '';
 
 chrome.devtools.network.onRequestFinished.addListener((request) => {
   request.getContent((content) => {
-    if (request.request.url === 'https://api.guaguayoupin.com/ggyp/ranking/item') {
+    if (request?.request?.url === 'https://api.guaguayoupin.com/ggyp/ranking/item') {
       listData = content;
     }
   })

@@ -1,7 +1,7 @@
 
 // 监听事件
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-  console.log(sender.tab ? "来自内容脚本: " : "来自扩展程序: ", request, sender);
+  console.log(sender.tab ? "来自内容脚本: " : "来自扩展程序: ", request, sender?.tab?.url ?? '');
   const { type, payload } = request;
   // 内容脚本的下载事件
   if (type === "download") {
@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     });
   } else if (type === 'devtools-send-data') {
     const response = payload ? JSON.parse(payload) : null;
-    console.log('[ devtools response ] >', response)
+    console.log('[ devtools 请求信息 ] >', response)
     if (response?.data?.itemList) {
       // 发送数据
       fetch('http://localhost:3372/ggbp', {

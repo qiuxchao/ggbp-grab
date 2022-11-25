@@ -67,7 +67,7 @@ $(document).ready(function () {
 
   // 初始化获取开关状态
   chrome.storage.sync.get(['on'], result => {
-    console.log('[ result ] >', result)
+    console.log('[ popup 开关状态 ] >', result)
     if (result.on) {
       isDetail ? addDownloadBtn() : addSendBtn();
     }
@@ -75,7 +75,7 @@ $(document).ready(function () {
 
   // 监听storage变化
   chrome.storage.onChanged.addListener((changes, area) => {
-    console.log('storage变化：', changes, area);
+    console.log('storage变化：', changes);
     const btnEl = $(isDetail ? '#gg-download-btn' : '#gg-send-btn');
     if (changes.on.newValue && !btnEl.length) {
       isDetail ? addDownloadBtn() : addSendBtn();
