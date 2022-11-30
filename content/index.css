@@ -5,6 +5,7 @@
 }
 
 .gg-helper-btn-wrap button.gg-helper-btn {
+  font-size: 14px;
   border: none;
   outline: none;
   width: 100px;
@@ -13,8 +14,9 @@
   color: #fff;
   border-radius: 8px;
   cursor: pointer;
-  box-shadow: 0 2px 6px 0px rgba(143, 13, 194, 0.3);
+  box-shadow: 0 2px 10px 0px rgba(143, 13, 194, 0.3);
   font-weight: 600;
+  margin-top: 16px;
 }
 .gg-helper-btn-wrap button.gg-helper-btn:active {
   filter: brightness(.9)
