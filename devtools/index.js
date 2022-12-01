@@ -18,6 +18,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     // 内容脚本的发送数据按钮点击
     if (type === 'send-data') {
       sendResponse({ haveData: !!listData });
+      if (!listData) return;
       // 使用 chrome.runtime.id 判断扩展上下文是否有效
       chrome.runtime?.id && chrome.runtime.sendMessage({
         type: "devtools-send-data",
