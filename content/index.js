@@ -112,7 +112,7 @@ function addSendBtn() {
 }
 
 $(document).ready(function () {
-  const isDetail = /detail/.test(document.location.href);
+  const isDetail = /\.com\/detail/.test(document.location.href);
 
   // 初始化获取开关状态
   chrome.storage.sync.get(['on'], result => {

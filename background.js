@@ -18,7 +18,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const { urlList, isBatch } = payload;
     urlList.forEach(item => {
       const [extName] = item.url.match(/\.(png|jpg|gif|jpeg|webp)$/)
-      const filename = `呱呱爆品素材/${item.title}/${item.index}${extName}`;
+      const filename = `呱呱爆品素材/${item.title}/${item.index}${extName}`.replace(/\*/g, 'x');;
       chrome.downloads.download({
         url: item.url,
         filename,

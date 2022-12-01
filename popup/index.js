@@ -11,9 +11,9 @@ $(document).ready(function () {
   chrome.storage.sync.get(['on'], result => {
     on = result.on || false;
     setCheckbox(on)
-    $('input.checkbox').change(function (e) { 
+    $('input.checkbox').change(function(e) { 
       on = e.target.checked;
-      setCheckbox(e.target.checked);
+      setCheckbox(on);
       chrome.storage.sync.set({ on });
     })
   });
