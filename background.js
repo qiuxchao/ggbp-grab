@@ -13,9 +13,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         // 授权成功
         payload.forEach(item => {
           const [extName] = item.url.match(/\.(png|jpg|gif|jpeg|webp)$/)
+          const filename = `呱呱爆品素材/${item.title}/${item.index}${extName}`.replace(/\*/g, 'x');
           chrome.downloads.download({
             url: item.url,
-            filename: `呱呱爆品素材/${item.title}/${item.index}${extName}`,
+            filename,
             conflictAction: 'overwrite',  // 覆盖相同文件
           }, (downloadId) => {
             console.log('[ downloadId ] >', downloadId)
