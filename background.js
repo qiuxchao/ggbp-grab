@@ -3,8 +3,8 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   console.log(sender.tab ? "来自内容脚本: " : "来自扩展程序: ", request, sender?.tab?.url ?? '');
   const { type, payload } = request;
-  // 内容脚本的下载事件
   if (type === "download") {
+    // 内容脚本的下载事件
     // 请求下载权限
     chrome.permissions.request({
       permissions: ['downloads']
@@ -24,6 +24,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       }
     });
   } else if (type === 'devtools-send-data') {
+    // devtools 捕获到的商品列表数据
     const response = payload ? JSON.parse(payload) : null;
     console.log('[ devtools 请求信息 ] >', response)
     if (response?.data?.itemList) {
